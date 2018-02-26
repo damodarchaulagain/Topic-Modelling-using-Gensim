@@ -16,8 +16,6 @@ import threading
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-
-
 def remove_digits(news):
 	file_list=[]
 	with open("np_digits.txt","r") as f:
@@ -41,13 +39,7 @@ def get_new_data():
 	common_words=get_common_words()
 	news_list= [filter(None,[(get_truncated(word.encode('utf-8'))).lstrip().rstrip() for word in balRules(remove_digits(news)).split(" ") if word not in common_words and len(word)>0]) for news in news_list]
 
-	frequency = defaultdict(int)
-	for news in news_list:
-		for token in news:
-			frequency[token] += 1
-
 	news_list = [[token for token in news] for news in news_list]
-
 	return news_list
 
 def get_common_words():
@@ -72,10 +64,10 @@ if __name__=="__main__":
 	print corpus
 
 	ldamodel=gensim.models.ldamodel.LdaModel(corpus, num_topics=10, id2word = dictionary, passes=20)
-	print ldamodel.print_topics(num_topics=4, num_words=3),"++++++======"
+	print ldamodel.print_topics(num_topics=4, num_words=3)
 
 	lsimodel=gensim.models.lsimodel.LsiModel(corpus, id2word=dictionary, num_topics=10)
-	print lsimodel.print_topics(num_topics=4,num_words=3),"-------____"
+	print lsimodel.print_topics(num_topics=4,num_words=3)
 	
 	tfidf = models.tfidfmodel.TfidfModel(corpus)
 
@@ -92,4 +84,3 @@ if __name__=="__main__":
 
 	# coupuslsi=lsimodell[corpus_tfidf] #Double wrapping the corpus with the lsi model
 	# lsimodell2=gensim.models.lsimodel.LsiModel(coupuslsi, num_topics=2, id2word = dictionary) 
-	
