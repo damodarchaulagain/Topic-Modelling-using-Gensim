@@ -7,6 +7,12 @@ Prerequisites
  pip install -U gensim
 
 
+
+
+
+
+
+
 Dummy dataset/news documents
 
 -testnews.txt
@@ -15,6 +21,12 @@ Dummy dataset/news documents
 -testnews4.txt
 -testnews5.txt
 -testnews6.txt
+
+
+
+
+
+
 
 
 Running the code
